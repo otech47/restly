@@ -9,10 +9,6 @@ window.onload = function(){
 	});
 }
 
-var openInNewWindow=function(protocol,domain,port,key,method,endpoint) {
-  window.open(protocol+"://"+domain+":"+port+endpoint);
-}
-
 var generateCurl=function(protocol,domain,port,key,method,endpoint) {
   var formid = 'form'+key;
   var curlcommand = 'curlcommand'+key;
