@@ -86,6 +86,7 @@ if apicall.endpoint
     div.control-group
      label.control-label &nbsp;
     div.controls
+     input.btn.btn-success(type='button', value='Open in New Tab',onclick='openInNewWindow('+"'"+config.protocol+"','"+config.domain+"','"+config.port+"',"+key+','+"'"+apicall.method+"'"+','+"'"+apicall.endpoint+"'"+')')
      input.btn.btn-success(type='button', value='Generate CURL',onclick='generateCurl('+"'"+config.protocol+"','"+config.domain+"','"+config.port+"',"+key+','+"'"+apicall.method+"'"+','+"'"+apicall.endpoint+"'"+')')
      - if(paramcount > 0) {
          span &nbsp;
