@@ -62,8 +62,8 @@ var generateCurl=function(protocol,domain,port,key,method,endpoint) {
 			 }
 				break;
 			default:
-				methodstr = "-X "+method.toUpperCase();
-				datastr = " -d'"+serializedstr+"'";
+				methodstr = "-H \"Content-Type: application/json\" -X "+method.toUpperCase();
+				datastr = " -d '"+serializedstr+"'";
 		}
 	}
 	else{
