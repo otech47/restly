@@ -104,7 +104,7 @@ var generateCurl=function(protocol,domain,port,key,method,endpoint) {
   
   $.ajax(ajax_options).done(function(data) { 
   	console.log("success",data);
-		$('#'+curlcommand).append("<pre>"+JSON.stringify(data,null,4)+"</pre>");
+		$('#'+curlcommand).append("<pre>"+JSON.stringify(data,null,2)+"</pre>");
 		if(endpoint == '/logo') {
 			// Render the logo in a nice fashion
 			var logo = data.data;
