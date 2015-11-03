@@ -33,6 +33,12 @@ var appendResponse=function(protocol,domain,port,key,method,endpoint) {
   });
 };
 
+var copyToClip=function(protocol,domain,port,key,method,endpoint) {
+  port = (":" + port) || "";
+  var copyText = protocol + "://" + domain + port + endpoint;
+  console.log(copyText);
+};
+
 var generateCurl=function(protocol,domain,port,key,method,endpoint,cb) {
   var formid = 'form'+key;
   var curlcommand = 'curlcommand'+key;

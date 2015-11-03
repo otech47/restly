@@ -87,10 +87,15 @@ if apicall.endpoint
      label.control-label &nbsp;
     div.controls
      input.btn.btn-success(type='button', value='Open in New Tab',onclick='openInNewTab('+"'"+config.protocol+"','"+config.domain+"','"+config.port+"',"+key+','+"'"+apicall.method+"'"+','+"'"+apicall.endpoint+"'"+')')
+     span &nbsp;
      input.btn.btn-success(type='button', value='Generate CURL',onclick='appendResponse('+"'"+config.protocol+"','"+config.domain+"','"+config.port+"',"+key+','+"'"+apicall.method+"'"+','+"'"+apicall.endpoint+"'"+')')
      - if(paramcount > 0) {
          span &nbsp;
          input.btn(type='reset', value='Clear Form')
+     - }
+     - if(apicall.method.toLowerCase() == 'get') {
+         span &nbsp;
+         input.btn(type='button', value='Copy URL', onclick='copyToClip')
      - }
 
   div.alert.alert-success.hidden(id="curlcommand"+key) 
