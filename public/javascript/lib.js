@@ -11,7 +11,7 @@ window.onload = function(){
 
 var openInNewTab=function(protocol,domain,port,key,method,endpoint) {
   generateCurl(protocol,domain,port,key,method,endpoint, function(err, data) {
-    var something = window.open("data:text/json," + encodeURIComponent(data), "_blank");
+    var something = window.open("data:text/json," + encodeURIComponent(JSON.stringify(data,null,2)), "_blank");
     something.focus();
   });
 };
