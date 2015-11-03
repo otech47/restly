@@ -7,9 +7,33 @@ window.onload = function(){
 		(!allowMultiFiles?files = []:"");
 		files.push(this.files[0]);
 	});
-}
+};
 
-var generateCurl=function(protocol,domain,port,key,method,endpoint) {
+var openInNewTab=function(protocol,domain,port,key,method,endpoint) {
+  generateCurl(protocol,domain,port,key,method,endpoint, function(err, data) {
+    var something = window.open("data:text/json," + encodeURIComponent(data), "_blank");
+    something.focus();
+  });
+};
+
+var appendResponse=function(protocol,domain,port,key,method,endpoint) {
+  generateCurl(protocol,domain,port,key,method,endpoint, function(err, data) {
+    var curlcommand = 'curlcommand'+key;
+    if(err) {
+      $('#'+curlcommand).append("<pre>"+data.responseText+"</pre>");
+    } else {
+      $('#'+curlcommand).append("<pre>"+JSON.stringify(data,null,2)+"</pre>");
+      if(endpoint == '/logo') {
+        // Render the logo in a nice fashion
+        var logo = data.data;
+        logo = logo.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); });
+        $('#'+curlcommand).append("The Logo<pre>"+logo+"</pre>");
+      }
+    }
+  });
+};
+
+var generateCurl=function(protocol,domain,port,key,method,endpoint,cb) {
   var formid = 'form'+key;
   var curlcommand = 'curlcommand'+key;
   var serialized= $('#'+formid).serializeArray();
@@ -98,18 +122,13 @@ var generateCurl=function(protocol,domain,port,key,method,endpoint) {
     ajax_options.processData = false;
   }
   
-  $.ajax(ajax_options).done(function(data) { 
-  	console.log("success",data);
-		$('#'+curlcommand).append("<pre>"+JSON.stringify(data,null,2)+"</pre>");
-		if(endpoint == '/logo') {
-			// Render the logo in a nice fashion
-			var logo = data.data;
-			logo = logo.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); });
-			$('#'+curlcommand).append("The Logo<pre>"+logo+"</pre>");
-		}
+  $.ajax(ajax_options).done(function(data) {
+    console.log("success",data);
+    cb(null, data);
+		
 	}).fail(function(data) {
-		console.log("fail",data);
-    $('#'+curlcommand).append("<pre>"+data.responseText+"</pre>");    
+		console.log("failure",data);
+    cb("failure", data);
   });
   
   
