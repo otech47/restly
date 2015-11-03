@@ -95,7 +95,7 @@ if apicall.endpoint
      - }
      - if(apicall.method.toLowerCase() == 'get') {
          span &nbsp;
-         input.btn(type='button', value='Copy URL', onclick='copyToClip')
+         input.btn(type='button', value='Copy URL', onclick='copyToClip()')
      - }
 
   div.alert.alert-success.hidden(id="curlcommand"+key) 
