@@ -17,6 +17,8 @@ if apicall.endpoint
           input(type='text', name=idname)
           span.add-on 
            i.icon-star
+          if apicall.endpointDescriptions && apicall.endpointDescriptions[idname]
+           span.help-block= apicall.endpointDescriptions[idname]
     -   }
     - }
       
