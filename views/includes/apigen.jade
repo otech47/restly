@@ -17,6 +17,8 @@ if apicall.endpoint
           input(type='text', name=idname)
           span.add-on 
            i.icon-star
+          if idname == ':vid'
+           span.help-block= 'The version of the API you want to request'
           if apicall.endpointDescriptions && apicall.endpointDescriptions[idname]
            span.help-block= apicall.endpointDescriptions[idname]
     -   }
