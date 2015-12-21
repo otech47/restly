@@ -28,6 +28,8 @@ restly.use = function(mw) {
     app.use(mw);
 };
 
+restly.set = app.set;
+
 restly.get = app.get;
 restly.post = app.post;
 restly.put = app.put;
