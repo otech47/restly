@@ -28,7 +28,9 @@ restly.use = function(mw) {
     app.use(mw);
 };
 
-restly.set = app.set;
+restly.set = function(prop, val) {
+    app.set(prop, val);
+};
 
 restly.get = app.get;
 restly.post = app.post;
