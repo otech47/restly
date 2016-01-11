@@ -1,5 +1,5 @@
 /***
-
+  
   RESTly API Framework, based on Express
 
 ***/
@@ -16,29 +16,6 @@ var restly = {};
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-
-var session = require('express-session');
-var sessionOptions = {
-    name: 'sessionId',
-    resave: false,
-    saveUninitialized: true,
-    secret: 'setapi',
-    cookie: {}
-};
-
-if (app.get('env') === 'production') {
-    app.set('trust proxy', 1);
-    sessionOptions.cookie.secure = true;
-}
-
-app.use(session(sessionOptions));
-
-app.use(function (req, res, next) {
-    console.log('==SESSION==');
-    console.log(req.session);
-    console.log('==ID==');
-    console.log(req.session.id);
-})
 
 // force express to parse posted and putted parameters
 app.use(bodyParser.urlencoded({ extended: true, uploadDir: '/tmp' }));
@@ -133,14 +110,14 @@ restly.init = function(r, opts) {
                     routes.parseRequest(ac, req, res);
                   });
                 })(apicall);
-                break;
+                break;   
             case 'get':
                 (function(ac) {
                   app.get(ac.endpoint, function (req,res) {
                     routes.parseRequest(ac, req, res);
                   });
                 })(apicall);
-                break;
+                break;    
         }
     }
 
@@ -179,7 +156,7 @@ restly.init = function(r, opts) {
     sections = _.uniq(sections);
 
     // prepare the page data
-    var page = {
+    var page = { 
                   routes: routesCollection,
                   config: opts,
                   section: req.params.section,
@@ -205,7 +182,7 @@ restly.init = function(r, opts) {
         if (e.code === 'ENOENT') {
             console.log('\n    Cannot find SSL private key or certificate file.');
             console.log('   Make sure "'+opts.ssl_private_key+'" and "'+opts.ssl_certificate+'" exist.')
-
+            
             throw e;
         }
     }
@@ -228,7 +205,7 @@ restly.init = function(r, opts) {
       process.exit()
     });
 
-    // if after
+    // if after 
     setTimeout(function() {
         console.error("Could not close connections in time, forcefully shutting down");
         process.exit()
@@ -277,7 +254,7 @@ var defaultOpts = function(opts) {
   if (!_.isString(defaults.protocol)) { defaults.protocol = "http"; }
   defaults.protocol = defaults.protocol.toLowerCase();
   if (defaults.protocol != 'http' && defaults.protocol != 'https') { defaults.protocol = 'http'; }
-
+  
   // sane port values
   if (!_.isNumber(defaults.port)) {
     // sane secure server values
@@ -287,7 +264,7 @@ var defaultOpts = function(opts) {
       defaults.port = 8000;
     }
   }
-
+  
   // sane docs endpoints value
   if (defaults.docs_endpoint != "/") {
     if (defaults.docs_endpoint == "") {
