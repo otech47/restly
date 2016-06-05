@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true, uploadDir: '/tmp' }));
 app.use(express.static(__dirname+'/public'));
 
 // wrapper for passing middleware to express
-restly.use = function(mw) {
-    app.use(mw);
+restly.use = function(mw, ext) {
+    app.use(mw, ext);
 };
 
 restly.set = function(prop, val) {
