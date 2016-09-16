@@ -37,7 +37,10 @@ restly.get = function(route, callback) {
     app.get(route, callback);
 };
 
-restly.post = app.post;
+restly.post = function(route, callback) {
+    app.post(route, callback);
+};
+
 restly.put = app.put;
 restly.delete = app.delete;
 
