@@ -50,6 +50,9 @@ restly.init = function(r, opts) {
     // make sure all our defaults are set
     opts = defaultOpts(opts);
 
+    console.log('init')
+    console.log(opts)
+
     // get our routes
     var routesCollection = routes.getRoutes(r);
 
@@ -232,6 +235,7 @@ restly.init = function(r, opts) {
 
 // default options
 var defaultOpts = function(opts) {
+  console.log('defaultOpts')
 
   // define defaults
   var defaults = {
@@ -246,7 +250,6 @@ var defaultOpts = function(opts) {
     docs_endpoint: "/",
     caching: false
   }
-  console.log('defaults')
   console.log(opts)
 
   // change defaults with supplied opts
@@ -268,14 +271,14 @@ var defaultOpts = function(opts) {
   if (defaults.protocol != 'http' && defaults.protocol != 'https') { defaults.protocol = 'http'; }
   
   // sane port values
-  if (!_.isNumber(defaults.port)) {
-    // sane secure server values
-    if (defaults.protocol == 'https') {
-      defaults.port = 8443;
-    } else {
-      defaults.port = 8000;
-    }
-  }
+  // if (!_.isNumber(defaults.port)) {
+  //   // sane secure server values
+  //   if (defaults.protocol == 'https') {
+  //     defaults.port = opts.port || 8443;
+  //   } else {
+  //     defaults.port = opts.port || 8000;
+  //   }
+  // }
   
   // sane docs endpoints value
   if (defaults.docs_endpoint != "/") {
