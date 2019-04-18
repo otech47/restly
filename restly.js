@@ -200,8 +200,11 @@ restly.init = function(r, opts) {
 
     server.listen(opts.port);
     } else {
+      console.log('app.listen')
+      console.log(opts.port)
       var server = app.listen(opts.port);
     }
+      console.log('app.listen past')
 
     // this function is called when you want the server to die gracefully
     // i.e. wait for existing connections
