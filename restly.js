@@ -238,7 +238,7 @@ var defaultOpts = function(opts) {
     lib: "",
     protocol: "http",
     domain: "localhost",
-    port: 8000,
+    port: opts.port || 8000,
     ssl_private_key: "sslcert/server.key",
     ssl_certificate: "sslcert/server.crt",
     name: "My API",
@@ -246,6 +246,8 @@ var defaultOpts = function(opts) {
     docs_endpoint: "/",
     caching: false
   }
+  console.log('defaults')
+  console.log(opts)
 
   // change defaults with supplied opts
   if (!_.isUndefined(opts) && _.isObject(opts)) {
